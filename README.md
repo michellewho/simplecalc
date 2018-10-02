@@ -110,5 +110,3 @@ like this:
 
 How incredibly intuitive, yes (he said, sarcastically)? It is possible to change this default
 directory where XCode puts its builds, but for our purposes, it's not important.
-
-
