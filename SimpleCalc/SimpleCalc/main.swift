@@ -10,15 +10,28 @@ import Foundation
 
 public class Calculator {
     public func calculate(_ args: [String]) -> Int {
-        var size = stringArray.count
+        let size = args.count
         var numbers: [Int] = []
         var result = 0;
         for i in 0...size-1 {
-            let arg = stringArray[i]
+            let arg = args[i]
             switch arg {
             case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
                 numbers.append((arg as NSString).integerValue)
+            case "+":
+                return numbers[0] + (args[i+1] as NSString).integerValue
+            case "-":
+                return numbers[0] - (args[i+1] as NSString).integerValue
+            case "*":
+                return numbers[0] * (args[i+1] as NSString).integerValue
+            case "/":
+                return numbers[0] / (args[i+1] as NSString).integerValue
+            case "%":
+                return numbers[0] % (args[i+1] as NSString).integerValue
             case "avg":
+                if numbers.count == 0 {
+                    return 0
+                }
                 var sum = 0;
                 for j in 0...numbers.count-1 {
                     sum = sum + numbers[j]
@@ -27,7 +40,9 @@ public class Calculator {
             case "count":
                 result = numbers.count
             case "fact":
-                if numbers[1] == 0 { result = 1 }
+                if numbers.count == 0 { return 0 }
+                result = 1
+                if numbers[0] == 0 { return result }
                 else {
                     for j in (1...numbers[0]) {
                         result = result * j
@@ -51,4 +66,3 @@ let first = readLine()!
 let operation = readLine()!
 let second = readLine()!
 print(Calculator().calculate([first, operation, second]))
-
